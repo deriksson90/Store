@@ -1,0 +1,25 @@
+﻿@model Store.ViewModels.ShoppingCartViewModel
+
+
+@{
+    ViewBag.Title = "CustomerSupport";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CustomerSupport</h2>
+
+<p> Din order överskrider 1000 kg eller 10 kubik. Detta medför att din order kräver manuell hantering.
+    Du uppmanas därför kontakta våran kundtjänst på<h1>054 - XXX XXX XXX.</h1> 
+    
+    Med vänliga hälsningar 
+                                                   <em>Billiga vitvaror.</em> 
+</p>
+<p></p>
+<p></p>
+<h3>Din vikt:  @Model.CartWeight </h3> 
+<h3>Din volym: @Model.CartVolume</h3>
+<p>
+
+</p>
+@Html.ActionLink("Återgå till varukorgen", "Index", "ShoppingCart")
+

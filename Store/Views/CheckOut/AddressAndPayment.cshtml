@@ -1,0 +1,21 @@
+﻿@model Store.Models.Order
+
+@{
+    ViewBag.Title = "Address And Payment";
+}
+
+@using (Html.BeginForm())
+{
+
+    <h2></h2>
+    <fieldset>
+        <legend>Leverans Information</legend>
+        @Html.EditorForModel()
+    </fieldset>
+    <fieldset>
+        <legend>Payment</legend>
+
+    </fieldset>
+
+    <input type="submit" value="Till utcheckning" />
+}

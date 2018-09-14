@@ -1,0 +1,29 @@
+﻿@model Store.Models.Item
+@{
+    ViewBag.Title = "Item - " + Model.Title;
+}
+<h2>@Model.Title</h2>
+
+
+<div id="item-details">
+    <p>
+        <em>Kategori:</em>
+
+        @Model.Category.CategoryName
+    </p>
+    <p>
+        <em>Leverantör:</em>
+        @Model.Producer.Name
+    </p>
+    <p>
+        <em>Pris:</em>
+        @String.Format("{0:F}",
+Model.Price) kr
+    </p>
+
+    <p class="button1">
+        @Html.ActionLink("Lägg till vara", "AddToCart",
+        "ShoppingCart", new { id = Model.ItemId }, "")
+    </p>
+
+</div>

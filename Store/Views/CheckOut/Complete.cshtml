@@ -1,0 +1,80 @@
+﻿@model Store.ViewModels.ShoppingCartViewModel
+@{
+    ViewBag.Title = "Shopping Cart";
+}
+
+<h3>
+    Varor:
+</h3>
+
+<div id="update-message">
+</div>
+<table class="table table-bordered table-hover">
+    <p>@Model.Order.FirstName @Model.Order.LastName</p>
+    <p> @Model.Order.Email</p>
+    <p>@Model.Order.Phone </p>
+    <p>Leveransadress: @Model.Order.Address, @Model.Order.PostalCode @Model.Order.City</p>
+    <p></p>
+   
+    <p> </p>
+    <tr>
+        <th>
+            Vara
+        </th>
+        <th>
+            Pris (st)
+        </th>
+        <th>
+            Antal
+        </th>
+        <th>Vikt</th>
+        <th>Volym</th>
+
+    </tr>
+    @foreach (var item in Model.CartItems)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Item.Title,
+                "Details", "Store", new { id = item.ItemId }, null)
+            </td>
+            <td>
+                @item.Item.Price
+            </td>
+            <td>
+                @item.Count
+            </td>
+            <td>
+
+                @item.Item.Weight
+
+            </td>
+            <td>@item.Item.Volume</td>
+
+        </tr>
+    }
+</table>
+
+    <tbody>
+
+
+        <h1>
+       
+        </h1>
+
+    </tbody>
+    <p> Totalt @Model.CartTotal
+
+
+
+    <p>
+        <h4> @Html.ActionLink("Fortsätt shoppa", "Index", "Store") </h4>
+
+        
+    <p>  </p>
+    <p>  </p>
+    <p>  </p>
+<h3>
+    @Html.ActionLink("Gå vidare till betalning", "index")
+</h3>
+ 

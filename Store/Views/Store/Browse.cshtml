@@ -1,0 +1,34 @@
+﻿@model Store.Models.Category
+
+@{
+    ViewBag.Title = "Browse";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1></h1>
+<h3> Varor </h3>
+<table class="table table-bordered table-hover">
+    <tablehead>
+        <tr>
+            <th>Vara</th>
+            <th>Märke</th>
+        </tr>
+    </tablehead>
+    <tbody>
+
+        @foreach (var item in Model.Items)
+        {
+        <tr>
+            <td>@Html.ActionLink(item.Title, "Details", new { id = item.ItemId })</td>  
+            <td>@item.Producer.Name</td>
+
+        </tr>
+            
+             
+        }
+    </tbody>
+
+
+</table>
+ 
+
