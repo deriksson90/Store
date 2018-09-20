@@ -121,29 +121,31 @@ namespace Store.Models
 
         public int RemoveFromCart(int id)
         {
-            // Get the cart 
-            var cartItem = storeDB.Carts.Single(
-                cart => cart.CartId == ShoppingCartId
-                && cart.RecordId == id);
+
+            var myCart = storeDB.Carts.Single(
+              cart => cart.CartId == ShoppingCartId
+              && cart.RecordId == id);
+
 
             int itemCount = 0;
 
-            if (cartItem != null)
-            {
-                //--if (cartItem.Count > 1)
-                //--{
-                //--    cartItem.Count--;
-                //--    itemCount = cartItem.Count;
-                //--}
-                //--else
-                //--{
-                storeDB.Carts.Remove(cartItem);
-                //--}
-                // Save changes 
+            if (myCart.Count > 1)
+                {
+                    myCart.Count--;
+                    itemCount = myCart.Count;
+                }
+                else
+                {
+                storeDB.Carts.Remove(myCart);
+                }
+               // Save changes()
                 storeDB.SaveChanges();
-            }
+            
             return itemCount;
         }
+
+
+
 
         public void EmptyCart()
         {
@@ -267,13 +269,14 @@ namespace Store.Models
             }
 
             order.Total = orderTotal;
-        //   EmptyCart();
+         //  EmptyCart();
 
             storeDB.SaveChanges();
 
             return order.OrderId;
         }
-        
+
+      
         public string GetCartId(HttpContextBase context)
         {
             if (context.Session[CartSessionKey] == null)

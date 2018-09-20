@@ -70,24 +70,20 @@ namespace Store.Controllers
             return View(viewModel);
         }
 
-
-        //
-        // AJAX: /ShoppingCart/RemoveFromCart/5
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
         {
-            // Remove the item from the cart
+
             var cart = ShoppingCart.GetCart(this.HttpContext);
 
-            // Get the name of the album to display confirmation
-            string itemName = storeDB.Carts
-                .Single(item => item.ItemId == id).Item.Title;
 
-            // Remove from cart
+            string itemName = storeDB.Carts
+                .Single(item => item.RecordId == id).Item.Title;
+
+
             int itemCount = cart.RemoveFromCart(id);
 
-            // Display the confirmation message
-            
+
             var results = new ShoppingCartRemoveViewModel
             {
                 Message = Server.HtmlEncode(itemName) +
@@ -97,9 +93,36 @@ namespace Store.Controllers
                 ItemCount = itemCount,
                 DeleteId = id
             };
-             
-            return View();
+            return Json(results);
         }
-       
+
+        /*
+                //
+                // AJAX: /ShoppingCart/RemoveFromCart/5
+                [HttpPost]
+                public ActionResult RemoveFromCart(int id)
+                {
+                    // Remove the item from the cart
+                    var cart = ShoppingCart.GetCart(this.HttpContext);
+                    var cartId = cart.GetCartId(this.HttpContext);
+
+                    // Get the name of the title to display confirmation
+              //     var itemName = storeDB.Carts
+              //          .Single(item => item.ItemId == id && item.CartId == cartId).Item.Title;
+
+                    // Remove from cart
+                    int itemCount = cart.RemoveFromCart(id);
+
+                    // Display the confirmation message
+                    var results = new ShoppingCartRemoveViewModel
+                    {
+                        CartTotal = cart.GetTotal(),
+                        CartCount = cart.GetCount(),
+                        ItemCount = itemCount,
+                        DeleteId = id
+                    };
+                    return Json(results);
+                }
+                */
     }
 }

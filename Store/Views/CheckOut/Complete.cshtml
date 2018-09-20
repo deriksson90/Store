@@ -4,19 +4,20 @@
 }
 
 <h3>
-    Varor:
+    Leverans till:
 </h3>
 
 <div id="update-message">
 </div>
+<p>@Model.Order.FirstName @Model.Order.LastName</p>
+<p> @Model.Order.Email</p>
+<p>@Model.Order.Phone </p>
+<p>Leveransadress: @Model.Order.Address, @Model.Order.PostalCode @Model.Order.City</p>
+<p></p>
+<p> </p>
+
+
 <table class="table table-bordered table-hover">
-    <p>@Model.Order.FirstName @Model.Order.LastName</p>
-    <p> @Model.Order.Email</p>
-    <p>@Model.Order.Phone </p>
-    <p>Leveransadress: @Model.Order.Address, @Model.Order.PostalCode @Model.Order.City</p>
-    <p></p>
-   
-    <p> </p>
     <tr>
         <th>
             Vara
@@ -29,8 +30,10 @@
         </th>
         <th>Vikt</th>
         <th>Volym</th>
+        <th>Ömtåligt</th>
 
     </tr>
+
     @foreach (var item in Model.CartItems)
     {
         <tr>
@@ -45,36 +48,29 @@
                 @item.Count
             </td>
             <td>
-
                 @item.Item.Weight
-
             </td>
-            <td>@item.Item.Volume</td>
+            <td>
+                @item.Item.Volume
+            </td>
+            <td>
+                @item.Item.Fragile kr
+            </td>
 
         </tr>
     }
 </table>
-
-    <tbody>
-
-
-        <h1>
-       
-        </h1>
-
-    </tbody>
-    <p> Totalt @Model.CartTotal
+<p></p>
+<p> Totalt: @Model.CartTotal kr</p>
+<p></p>
+<p>
+    <h4> @Html.ActionLink("Fortsätt shoppa", "Index", "ShoppingCart") </h4>
 
 
-
-    <p>
-        <h4> @Html.ActionLink("Fortsätt shoppa", "Index", "Store") </h4>
-
-        
-    <p>  </p>
-    <p>  </p>
-    <p>  </p>
+<p>  </p>
+<p>  </p>
+<p>  </p>
 <h3>
-    @Html.ActionLink("Gå vidare till betalning", "index")
+    @Html.ActionLink("Gå vidare till betalning", "End", new { }, null)
 </h3>
- 
+

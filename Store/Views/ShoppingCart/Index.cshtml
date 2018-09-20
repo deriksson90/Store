@@ -11,6 +11,7 @@
         $(".RemoveLink").click(function () {
             // Get the id from the link
             var recordToDelete = $(this).attr("data-id");
+
             if (recordToDelete != '') {
                 // Perform the ajax post
                 $.post("/ShoppingCart/RemoveFromCart", { "id": recordToDelete },
@@ -55,39 +56,52 @@
         </th>
         <th>Vikt</th>
         <th>Volym</th>
-        <th>Installations hjälp</th>
+        <th>Ömtåligt</th>
         <th>Ta bort vara</th>
 
     </tr>
 
     @foreach (var item in Model.CartItems)
     {
-        <tr>
+        <tr id="row-@item.RecordId">
             <td>
                 @Html.ActionLink(item.Item.Title,
-             "Details", "Store", new { id = item.ItemId }, null)
+                "Details", "Store", new { id = item.ItemId }, null)
             </td>
             <td>
-                @item.Item.Price kr
+                @item.Item.Price
             </td>
-            <td>
+            <td id="item-count-@item.RecordId">
                 @item.Count
             </td>
             <td>
-
-                @item.Item.Weight kg
-
-            </td>
-            <td>@item.Item.Volume kubik</td>
-            <td>
-                @item.Item.InstHelp
+                @item.Item.Weight
             </td>
             <td>
-                <a href="#" class="RemoveLink" data-id="item.ItemId">Ta bort</a>
+                @item.Item.Volume
+            </td>
+            <td>
+                @item.Item.Fragile kr
+            </td>
+            <td>
+                <a href="#" class="RemoveLink"
+                   data-id="@item.RecordId">
+                    Remove
+                    from cart
+                </a>
             </td>
         </tr>
-
     }
+    <tr>
+        <td>
+            Total
+        </td>
+        <td></td>
+        <td></td>
+        <td id="cart-total">
+            @Model.CartTotal
+        </td>
+    </tr>
 </table>
 
 <tbody>

@@ -11,7 +11,7 @@ namespace Store.ViewModels
         public List<Cart> CartItems { get; set; }
         public List<OrderDetail> OrderDetails { get; set; }
         public Order Order { get; set; }
-        public Item Items { get; set; }
+        public List<Item> Items { get; set; }
         public decimal CartTotal { get; set; }
         public decimal CartWeight { get; set; }
         public decimal CartVolume { get; set; }
